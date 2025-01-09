@@ -5,11 +5,14 @@ const filePath = path.join(process.cwd(), "aula - 07", "texto.txt");
 const fileOutPath = path.join(process.cwd(), "aula - 07", "texto-linhas.txt");
 console.log(filePath);
 
+console.time("Leitura arquivos");
 fs.readFile(filePath, {}, (erro, dados) => {
     if (erro) {
-        console.log(`Erro na leitura do caminho para o arquivo ${filePath}.`);
+        console.error(`Erro na leitura do caminho para o arquivo ${filePath}.`);
         return;
     }
+
+    console.timeEnd("Manipular arquivos");
 
     const texto = dados.toString();
     const linhas = texto.split("\n");
@@ -18,7 +21,9 @@ fs.readFile(filePath, {}, (erro, dados) => {
 
     fs.writeFile(fileOutPath, linhasJaustadas.join("\n"), {}, (erro) => {
         if (erro) {
-            console.log(`Erro na escritra do caminho para o arquivo ${fileOutPath}.`);
+            console.error(`Erro na escritra do caminho para o arquivo ${fileOutPath}.`);
         };
+
+        // console.timeEnd("Manipular arquivos");
     });
 });
