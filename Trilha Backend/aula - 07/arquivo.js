@@ -1,12 +1,12 @@
-const path = require("path");
-const fs = require("fs");
+import { join } from "path";
+import { readFile, writeFile } from "fs";
 
-const filePath = path.join(process.cwd(), "aula - 07", "texto.txt");
-const fileOutPath = path.join(process.cwd(), "aula - 07", "texto-linhas.txt");
+const filePath = join(process.cwd(), "aula - 07", "texto.txt");
+const fileOutPath = join(process.cwd(), "aula - 07", "texto-linhas.txt");
 console.log(filePath);
 
 console.time("Leitura arquivos");
-fs.readFile(filePath, {}, (erro, dados) => {
+readFile(filePath, {}, (erro, dados) => {
     if (erro) {
         console.error(`Erro na leitura do caminho para o arquivo ${filePath}.`);
         return;
@@ -17,9 +17,10 @@ fs.readFile(filePath, {}, (erro, dados) => {
     const texto = dados.toString();
     const linhas = texto.split("\n");
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const linhasJaustadas = linhas.map((linha, index, arrayDeLinhas) => `${index + 1} - ${linha}`);
 
-    fs.writeFile(fileOutPath, linhasJaustadas.join("\n"), {}, (erro) => {
+    writeFile(fileOutPath, linhasJaustadas.join("\n"), {}, (erro) => {
         if (erro) {
             console.error(`Erro na escritra do caminho para o arquivo ${fileOutPath}.`);
         };

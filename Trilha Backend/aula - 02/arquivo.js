@@ -9,6 +9,7 @@ console.log(qualquerCoisa)
 let numero = 20
 const numero2 = 300 //inteiro
 const numeroFavorito = 500000000.1 //real
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const estaChovendo = false
 const nome = "Jonas"
 
